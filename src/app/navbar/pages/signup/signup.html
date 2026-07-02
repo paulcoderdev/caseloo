@@ -1,0 +1,63 @@
+<section class="min-h-screen bg-slate-50 px-4 py-10 sm:px-6 lg:px-8">
+  <div class="mx-auto flex max-w-6xl items-center justify-center">
+    <p-card styleClass="w-full overflow-hidden border border-slate-200 shadow-2xl">
+      <div class="grid gap-10 md:grid-cols-[1.05fr_0.95fr]">
+        <div class="hidden rounded-3xl bg-slate-900 p-8 text-slate-100 md:flex md:flex-col md:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.35em] text-yellow-400">Join CaseLo</p>
+            <h2 class="mt-4 text-3xl font-semibold">Create your career profile in minutes.</h2>
+            <p class="mt-4 max-w-md text-sm leading-6 text-slate-300">Sign up to unlock job recommendations, save your favorite roles, and keep your professional search organized.</p>
+          </div>
+          <div class="space-y-3 text-sm text-slate-300">
+            <div class="rounded-2xl border border-white/10 bg-white/10 p-3">🏆 Tailored career opportunities</div>
+            <div class="rounded-2xl border border-white/10 bg-white/10 p-3">📁 Save your favorite jobs</div>
+            <div class="rounded-2xl border border-white/10 bg-white/10 p-3">⚡ Fast and secure onboarding</div>
+          </div>
+        </div>
+
+        <div class="p-2 sm:p-6 md:p-8">
+          <div class="mb-6">
+            <p class="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">Create account</p>
+            <h2 class="mt-2 text-3xl font-semibold text-slate-900">Start your journey</h2>
+            <p class="mt-2 text-sm text-slate-600">Join thousands of professionals building better careers.</p>
+          </div>
+
+          @if (errorMessage) {
+            <p-message severity="error" [text]="errorMessage" styleClass="mb-4"></p-message>
+          }
+
+          @if (successMessage) {
+            <p-message severity="success" [text]="successMessage" styleClass="mb-4"></p-message>
+          }
+
+          <form class="mt-6 space-y-4" (ngSubmit)="onSubmit()">
+            <div class="space-y-2">
+              <label for="name" class="block text-sm font-medium text-slate-700">Full name</label>
+              <input id="name" name="name" pInputText [(ngModel)]="name" required placeholder="Ajayi Paul" class="w-full" />
+            </div>
+
+            <div class="space-y-2">
+              <label for="signup-email" class="block text-sm font-medium text-slate-700">Email</label>
+              <input id="signup-email" name="email" pInputText type="email" [(ngModel)]="email" required placeholder="you@example.com" class="w-full" />
+            </div>
+
+            <div class="space-y-2">
+              <label for="signup-password" class="block text-sm font-medium text-slate-700">Password</label>
+              <p-password id="signup-password" name="password" [(ngModel)]="password" [toggleMask]="true" [feedback]="false" inputStyleClass="w-full" styleClass="w-full" placeholder="Create a password"></p-password>
+              <p class="text-xs text-slate-500">Use exactly 4 letters, 4 numbers, and 2 symbols.</p>
+            </div>
+
+            <p-button type="submit" label="Create account" styleClass="w-full"></p-button>
+          </form>
+
+          <p-divider></p-divider>
+
+          <p class="text-center text-sm text-slate-600">
+            Already have an account?
+            <a routerLink="/login" class="ml-1 font-semibold text-orange-500 hover:underline">Sign in</a>
+          </p>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</section>
