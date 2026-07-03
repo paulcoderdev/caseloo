@@ -1,51 +1,81 @@
-<section class="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(249,115,22,0.18),_transparent_35%),linear-gradient(135deg,_#f8fafc_0%,_#eef2ff_100%)]` can be written as `bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.18),transparent_35%),linear-gradient(135deg,#f8fafc_0%,#eef2ff_100%)] px-4 py-10 sm:px-6 lg:px-8">
-  <div class="mx-auto flex max-w-6xl items-center justify-center">
-    <p-card styleClass="w-full overflow-hidden border border-slate-200 shadow-2xl">
-      <div class="grid gap-10 md:grid-cols-[1.05fr_0.95fr]">
-      
-        <div class="p-2 sm:p-6 md:p-8">
-          <div class="mb-6">
-            <p class="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">Welcome back</p>
-            <h2 class="mt-2 text-3xl font-semibold text-slate-900">Sign in to your account</h2>
-            <p class="mt-2 text-sm text-slate-600">Continue your journey and stay on top of the latest opportunities.</p>
-          </div>
-
-          @if (errorMessage) {
-            <p-message severity="error" [text]="errorMessage" styleClass="mb-4"></p-message>
-          }
-
-          @if (successMessage) {
-            <p-message severity="success" [text]="successMessage" styleClass="mb-4"></p-message>
-          }
-
-          <form class="mt-6 space-y-4" (ngSubmit)="onSubmit()">
-            <div class="space-y-2">
-              <label for="username" class="block text-sm font-medium text-slate-700">Username</label>
-              <input id="username" name="username" pInputText [(ngModel)]="username" required placeholder="Enter your username" class="w-full" />
-            </div>
-
-            <div class="space-y-2">
-              <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
-              <input id="email" name="email" pInputText type="email" [(ngModel)]="email" required placeholder="you@example.com" class="w-full" />
-            </div>
-
-            <div class="space-y-2">
-              <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
-              <p-password id="password" name="password" [(ngModel)]="password" [toggleMask]="true" [feedback]="false" inputStyleClass="w-full" styleClass="w-full" placeholder="Enter your password"></p-password>
-              <p class="text-xs text-slate-500">Use exactly 4 letters, 4 numbers, and 2 symbols.</p>
-            </div>
-
-            <p-button type="submit" label="Sign in" styleClass="w-full"></p-button>
-          </form>
-
-          <p-divider></p-divider>
-
-          <p class="text-center text-sm text-slate-600">
-            New here?
-            <a routerLink="/signup" class="ml-1 font-semibold text-orange-500 hover:underline">Create an account</a>
-          </p>
-        </div>
+<section class="min-h-screen bg-[linear-gradient(135deg,#f0fdf4_0%,#ecfeff_100%)] px-4 py-20">
+  <div class="mx-auto flex max-w-6xl flex-col overflow-hidden rounded-4xl bg-white shadow-2xl lg:flex-row">
+    <div class="flex-1 bg-emerald-600 p-10 text-white lg:p-14">
+      <span class="inline-flex rounded-full bg-white/20 px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em]">
+        Welcome back
+      </span>
+      <h1 class="mt-6 text-4xl font-semibold leading-tight">Sign in to manage your payments with ease.</h1>
+      <p class="mt-4 max-w-md text-lg text-emerald-50">
+        Access your dashboard, track transactions and keep your business moving forward.
+      </p>
+      <div class="mt-10 rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+        <p class="text-sm uppercase tracking-[0.2em] text-emerald-100">Why teams love Caselo</p>
+        <ul class="mt-3 space-y-2 text-sm text-emerald-50">
+          <li>• Safe, instant onboarding</li>
+          <li>• Real-time payment insights</li>
+          <li>• Friendly support for every stage</li>
+        </ul>
       </div>
-    </p-card>
+    </div>
+
+    <div class="flex-1 p-8 sm:p-10 lg:p-14">
+      <h2 class="text-3xl font-semibold text-slate-800">Log in</h2>
+      <p class="mt-2 text-sm text-slate-500">Continue where you left off.</p>
+
+      <form class="mt-8 space-y-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label class="mb-2 block text-sm font-medium text-slate-700" for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+            placeholder="you@example.com"
+          />
+          @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+            <p class="mt-1 text-sm text-rose-600">Please enter a valid email address.</p>
+          }
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-slate-700" for="password">Password</label>
+          <div class="relative">
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-12 text-slate-900 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+              placeholder="Enter your password"
+            />
+            <button
+              type="button"
+              class="absolute inset-y-0 right-3 flex items-center text-slate-500 hover:text-emerald-600"
+              (click)="togglePasswordVisibility()"
+              aria-label="Toggle password visibility"
+            >
+              <i class="pi" [class.pi-eye]="!showPassword" [class.pi-eye-slash]="showPassword"></i>
+            </button>
+          </div>
+          @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+            <p class="mt-1 text-sm text-rose-600">Please enter your password.</p>
+          }
+        </div>
+
+        <button type="submit" class="w-full rounded-xl bg-emerald-600 px-4 py-3 font-semibold text-white transition hover:bg-emerald-700">
+          Sign in
+        </button>
+
+        @if (feedbackMessage) {
+          <div class="rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+            {{ feedbackMessage }}
+          </div>
+        }
+
+        <p class="text-sm text-slate-500">
+          Need an account?
+          <a routerLink="/signup" class="ml-1 font-semibold text-emerald-600 hover:text-emerald-700">Create one</a>
+        </p>
+      </form>
+    </div>
   </div>
 </section>

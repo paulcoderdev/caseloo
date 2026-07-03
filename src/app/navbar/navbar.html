@@ -1,23 +1,35 @@
-<header class="border-b border-green-600 bg-green-600 text-white shadow-sm">
+<header class="border-b border-emerald-200 bg-white/95 text-slate-800 shadow-sm backdrop-blur">
   <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-    <a routerLink="/" class="flex items-center  text-2xl font-semibold tracking-[0.3em] text-white">
-      <span class="text-white">CASE</span>
-      <span class="text-gray-700">LO</span>
+    <a routerLink="/" class="flex items-center gap-2 text-2xl font-semibold tracking-[0.3em] text-slate-900">
+      <span class="rounded-full bg-emerald-600 px-2 py-1 text-white">CA</span>
+      <span class="text-emerald-600">SELO</span>
     </a>
 
     <div class="hidden md:block">
-      <p-menubar [model]="items" styleClass="border-none bg-transparent p-0 shadow-none">
+      <p-menubar [model]="items" styleClass="border-none bg-transparent p-0 shadow-none  ">
         <ng-template pTemplate="end">
           <div class="ml-4 flex items-center gap-2">
-            <p-button routerLink="/login" label="Login" severity="secondary" [text]="true"></p-button>
-            <p-button routerLink="/signup" label="Sign Up" icon="pi pi-user"></p-button>
+            @if (user()) {
+              <button type="button" (click)="signOut()" class="rounded-full border border-emerald-200 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50">Sign Out</button>
+              <div class="flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-700">
+                <span class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-sm font-bold text-white">{{ initials() }}</span>
+                <span class="hidden lg:block">{{ user()?.fullName }}</span>
+              </div>
+            } @else {
+              <a routerLink="/login" routerLinkActive="text-emerald-600" class="rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-700">Login</a>
+              <a routerLink="/signup" class="rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700">Sign Up</a>
+            }
           </div>
         </ng-template>
       </p-menubar>
     </div>
 
     <div class="flex items-center gap-2 md:hidden">
-      <p-button routerLink="/login" icon="pi pi-bars" severity="secondary" [text]="true"></p-button>
+      @if (user()) {
+        <button type="button" (click)="signOut()" class="rounded-full border border-emerald-200 px-3 py-2 text-sm font-semibold text-emerald-700">Sign Out</button>
+      } @else {
+        <a routerLink="/login" class="rounded-full bg-emerald-600 px-3 py-2 text-sm font-semibold text-white">Login</a>
+      }
     </div>
   </nav>
 </header>

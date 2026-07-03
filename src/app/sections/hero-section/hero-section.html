@@ -10,7 +10,7 @@
         <div
             pAnimateOnScroll
             enterClass="animate-enter fade-in-10 slide-in-from-l-10 animate-duration-1000"
-            class="lg:w-1/2">
+            class="w-full lg:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left">
 
             <span class="bg-green-100 text-green-700 px-5 py-2 rounded-full font-semibold">
                 Trusted by 15,000+ Businesses
@@ -42,7 +42,7 @@
 
             </p>
 
-            <div class="flex gap-6 mt-10">
+            <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-10 items-center lg:items-start justify-center lg:justify-start">
 
                 <button
                     class="bg-green-600 text-white px-8 py-4 rounded-xl
@@ -65,7 +65,7 @@
 
             </div>
 
-            <div class="flex gap-12 mt-12">
+            <div class="flex flex-col sm:flex-row gap-6 sm:gap-12 mt-12 items-center lg:items-start justify-center lg:justify-start">
 
                 <div>
                     <h2 class="text-3xl font-bold">
@@ -106,21 +106,20 @@
         <div
             pAnimateOnScroll
             enterClass="animate-enter zoom-in-50 animate-duration-1000"
-            class="relative mt-20 lg:mt-0 lg:w-1/2 flex justify-center">
+            class="relative mt-12 w-full lg:mt-0 lg:w-1/2 flex justify-center hero-visual">
 
             
 
             <img
                 src="pos.png"
-                class="w-95 rounded-3xl shadow-2xl
+                class="hero-pos-image rounded-3xl shadow-2xl
                 hover:scale-105 transition duration-500 z-10">
 
             
 
             <img
                 src="phone.png"
-                class="absolute -bottom-14 -left-12
-                w-65
+                class="hero-phone-image absolute -bottom-14 -left-12
                 rounded-3xl
                 shadow-2xl
                 border-8 border-white

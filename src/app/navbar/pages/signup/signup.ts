@@ -1,60 +1,63 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { DividerModule } from 'primeng/divider';
-import { InputTextModule } from 'primeng/inputtext';
-import { MessageModule } from 'primeng/message';
-import { PasswordModule } from 'primeng/password';
-import { JobService } from '../../services/job';
+import { AuthService } from '../../../auth/auth.service';
+
+interface SignupFormGroup {
+  fullName: FormControl<string>;
+  email: FormControl<string>;
+  password: FormControl<string>;
+}
 
 @Component({
   selector: 'app-signup-page',
   standalone: true,
-  imports: [FormsModule, RouterLink, ButtonModule, CardModule, DividerModule, InputTextModule, MessageModule, PasswordModule],
-  templateUrl: './signup.html'
+  imports: [ReactiveFormsModule, RouterLink],
+  templateUrl: './signup.html',
+  styleUrl: './signup.css'
 })
 export class SignupPageComponent {
-  private readonly jobService = inject(JobService);
+  private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
-  name = '';
-  email = '';
-  password = '';
-  errorMessage = '';
-  successMessage = '';
+  readonly signupForm = new FormGroup<SignupFormGroup>({
+    fullName: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(2)] }),
+    email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
+    password: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(8), passwordStrengthValidator] })
+  });
+
+  submitted = false;
+  feedbackMessage = '';
   showPassword = false;
-
-  onSubmit(): void {
-    this.errorMessage = '';
-    this.successMessage = '';
-
-    if (!this.name.trim() || !this.email.trim() || !this.password.trim()) {
-      this.errorMessage = 'Name, email, and password are required.';
-      return;
-    }
-
-    if (!this.isValidPassword(this.password)) {
-      this.errorMessage = 'Password must include 4 letters, 4 numbers, and 2 symbols.';
-      return;
-    }
-
-    const displayName = this.name.trim() || this.email.trim().split('@')[0] || 'Guest';
-    this.jobService.setCurrentUser(displayName);
-    this.successMessage = `Welcome aboard, ${displayName}!`;
-    this.router.navigate(['/']);
-  }
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
 
-  private isValidPassword(password: string): boolean {
-    const letters = (password.match(/[A-Za-z]/g) || []).length;
-    const numbers = (password.match(/[0-9]/g) || []).length;
-    const symbols = (password.match(/[^A-Za-z0-9]/g) || []).length;
+  onSubmit(): void {
+    this.submitted = true;
 
-    return letters === 4 && numbers === 4 && symbols === 2;
+    if (this.signupForm.invalid) {
+      this.feedbackMessage = 'Please complete the form with a valid name, email and a strong password.';
+      return;
+    }
+
+    const { fullName, email, password } = this.signupForm.getRawValue();
+    this.authService.signUp({ fullName, email, password });
+    this.feedbackMessage = 'Account created successfully. Welcome to Caselo.';
+    this.router.navigate(['/']);
   }
+}
+
+function passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
+  const value = (control.value ?? '') as string;
+  const hasLetter = /[a-zA-Z]/.test(value);
+  const hasCapitalLetter = /[A-Z]/.test(value);
+  const hasNumber = /\d/.test(value);
+
+  if (value.length >= 8 && hasLetter && hasCapitalLetter && hasNumber) {
+    return null;
+  }
+
+  return { passwordStrength: true };
 }

@@ -162,7 +162,7 @@
 
                 </p>
 
-                <div class="flex gap-8 text-gray-500">
+                <div class="flex flex-wrap items-center justify-center gap-4 text-gray-500">
 
                     <a href="#" class="hover:text-green-400 transition">
 
@@ -181,6 +181,12 @@
                         Cookies
 
                     </a>
+
+                    @if (authService.user()) {
+                        <button type="button" (click)="signOut()" class="rounded-full border border-emerald-500/40 px-4 py-2 text-sm font-semibold text-emerald-400 transition hover:bg-emerald-600 hover:text-white">
+                            Sign out
+                        </button>
+                    }
 
                 </div>
 
