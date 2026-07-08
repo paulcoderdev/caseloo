@@ -22,17 +22,9 @@
   .hero-visual {
     margin-top: 2rem;
     max-width: 320px;
+    display: none;
   }
 
-  .hero-pos-image {
-    width: 74%;
-    max-width: 220px;
-  }
 
-  .hero-phone-image {
-    width: 38%;
-    max-width: 120px;
-    left: -0.35rem;
-    bottom: -0.9rem;
-  }
+  
 }

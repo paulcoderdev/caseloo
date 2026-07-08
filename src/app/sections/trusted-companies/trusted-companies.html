@@ -105,8 +105,8 @@
                 enterClass="animate-enter slide-in-from-b-8 animate-duration-700"
                 class="bg-green-50 rounded-3xl p-10 text-center hover:scale-105 transition shadow-lg">
 
-                <h2 class="text-5xl font-bold text-green-600">
-                    15K+
+                <h2 #statValue class="text-5xl font-bold text-green-600">
+                    {{ values[0] | number:'1.0-0' }}K+
                 </h2>
 
                 <p class="mt-3 text-gray-600">
@@ -120,8 +120,8 @@
                 enterClass="animate-enter slide-in-from-b-8 animate-duration-800"
                 class="bg-green-50 rounded-3xl p-10 text-center hover:scale-105 transition shadow-lg">
 
-                <h2 class="text-5xl font-bold text-green-600">
-                    120+
+                <h2 #statValue class="text-5xl font-bold text-green-600">
+                    {{ values[1] | number:'1.0-0' }}+
                 </h2>
 
                 <p class="mt-3 text-gray-600">
@@ -135,8 +135,8 @@
                 enterClass="animate-enter slide-in-from-b-8 animate-duration-900"
                 class="bg-green-50 rounded-3xl p-10 text-center hover:scale-105 transition shadow-lg">
 
-                <h2 class="text-5xl font-bold text-green-600">
-                    99.9%
+                <h2 #statValue class="text-5xl font-bold text-green-600">
+                    {{ values[2] | number:'1.1-1' }}%
                 </h2>
 
                 <p class="mt-3 text-gray-600">
@@ -150,8 +150,8 @@
                 enterClass="animate-enter slide-in-from-b-8 animate-duration-1000"
                 class="bg-green-50 rounded-3xl p-10 text-center hover:scale-105 transition shadow-lg">
 
-                <h2 class="text-5xl font-bold text-green-600">
-                    ₦2.5B
+                <h2 #statValue class="text-5xl font-bold text-green-600">
+                    ₦{{ values[3] | number:'1.0-0' }}M
                 </h2>
 
                 <p class="mt-3 text-gray-600">

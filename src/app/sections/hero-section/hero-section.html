@@ -1,4 +1,4 @@
-<section class="relative overflow-hidden bg-linear-to-br from-white via-green-50 to-green-100 py-20">
+<section #heroSection class="relative overflow-hidden bg-linear-to-br from-white via-green-50 to-green-100 py-20">
 
     
     <div class="absolute top-0 left-0 w-72 h-72 bg-green-300 rounded-full blur-3xl opacity-20"></div>
@@ -65,55 +65,55 @@
 
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-6 sm:gap-12 mt-12 items-center lg:items-start justify-center lg:justify-start">
+    <div class="flex flex-col sm:flex-row gap-6 sm:gap-12 mt-12 items-center lg:items-start justify-center lg:justify-start">
 
-                <div>
-                    <h2 class="text-3xl font-bold">
-                        15K+
-                    </h2>
+            <div>
+                <h2 #statValue class="text-3xl font-bold text-green-600">
+            {{ businessCount | number:'1.0-0' }}+
+                </h2>
 
-                    <p class="text-gray-500">
-                        Businesses
-                    </p>
-                </div>
-
-                <div>
-                    <h2 class="text-3xl font-bold">
-                        ₦200M+
-                    </h2>
-
-                    <p class="text-gray-500">
-                        Daily Transactions
-                    </p>
-                </div>
-
-                <div>
-                    <h2 class="text-3xl font-bold">
-                        99.9%
-                    </h2>
-
-                    <p class="text-gray-500">
-                        Uptime
-                    </p>
-                </div>
-
+                <p class="text-gray-500">
+            Businesses
+                </p>
             </div>
 
-        </div>
+            <div>
+               <h2 #statValue class="text-3xl font-bold text-green-600">
+            ₦{{ transactionCount | number:'1.0-0' }}M+
+                </h2>
+
+                <p class="text-gray-500">
+            Daily Transactions
+                </p>
+            </div>
+
+            <div>
+                <h2 #statValue class="text-3xl font-bold text-green-600">
+            {{ uptimeCount | number:'1.1-1' }}%
+                </h2>
+
+                <p class="text-gray-500">
+                    Uptime
+                </p>
+            </div>
+
+     </div>
+
+    </div>
 
         
 
         <div
             pAnimateOnScroll
             enterClass="animate-enter zoom-in-50 animate-duration-1000"
-            class="relative mt-12 w-full lg:mt-0 lg:w-1/2 flex justify-center hero-visual">
+            class="relative mt-12 w-full lg:mt-0 lg:w-1/2 flex justify-center hero-visual ">
 
             
 
             <img
                 src="pos.png"
                 class="hero-pos-image rounded-3xl shadow-2xl
-                hover:scale-105 transition duration-500 z-10">
+                hover:scale-105 transition duration-500 z-10 ">
 
             
 
@@ -127,7 +127,7 @@
 
             
 
-            <div class="absolute top-12 -right-16 bg-white rounded-3xl shadow-2xl p-5">
+            <div class="absolute top-12 -right-28 bg-white rounded-3xl shadow-2xl p-5 ">
 
                 <div class="flex items-center gap-3">
 
@@ -143,7 +143,7 @@
                             Payment Successful
                         </h2>
 
-                        <p class="text-gray-500">
+                        <p class="text-gray-500 ">
                             ₦245,000 Received
                         </p>
 

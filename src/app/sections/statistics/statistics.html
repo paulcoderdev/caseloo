@@ -2,7 +2,7 @@
 
     <div class="max-w-7xl mx-auto px-8">
 
-        <!-- Heading -->
+        
 
         <div
             pAnimateOnScroll
@@ -38,11 +38,11 @@
 
         </div>
 
-        <!-- Stats -->
+       
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20">
 
-            <!-- CARD -->
+            
 
             <div
                 pAnimateOnScroll
@@ -51,9 +51,9 @@
 
                 <i class="pi pi-users text-5xl mb-6"></i>
 
-                <h2 class="text-5xl font-bold">
+                <h2 #statValue class="text-5xl font-bold">
 
-                    20K+
+                    {{ values[0] | number:'1.0-0' }}K+
 
                 </h2>
 
@@ -65,7 +65,7 @@
 
             </div>
 
-            <!-- CARD -->
+            
 
             <div
                 pAnimateOnScroll
@@ -74,9 +74,9 @@
 
                 <i class="pi pi-wallet text-5xl mb-6"></i>
 
-                <h2 class="text-5xl font-bold">
+                <h2 #statValue class="text-5xl font-bold">
 
-                    ₦5B+
+                    ₦{{ values[1] | number:'1.0-0' }}M+
 
                 </h2>
 
@@ -88,7 +88,7 @@
 
             </div>
 
-            <!-- CARD -->
+           
 
             <div
                 pAnimateOnScroll
@@ -97,9 +97,9 @@
 
                 <i class="pi pi-check-circle text-5xl mb-6"></i>
 
-                <h2 class="text-5xl font-bold">
+                <h2 #statValue class="text-5xl font-bold">
 
-                    99.99%
+                    {{ values[2] | number:'1.2-2' }}%
 
                 </h2>
 
@@ -111,7 +111,7 @@
 
             </div>
 
-            <!-- CARD -->
+            
 
             <div
                 pAnimateOnScroll
@@ -120,9 +120,9 @@
 
                 <i class="pi pi-globe text-5xl mb-6"></i>
 
-                <h2 class="text-5xl font-bold">
+                <h2 #statValue class="text-5xl font-bold">
 
-                    150+
+                    {{ values[3] | number:'1.0-0' }}+
 
                 </h2>
 
@@ -136,7 +136,7 @@
 
         </div>
 
-        <!-- Bottom Row -->
+        
 
         <div
             pAnimateOnScroll
